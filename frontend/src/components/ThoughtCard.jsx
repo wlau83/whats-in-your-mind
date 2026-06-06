@@ -1,7 +1,12 @@
 import { useState } from "react";
 import axiosInstance from "../api/axiosInstance";
 
-const ThoughtCard = ({ thought, onThoughtUpdated, onThoughtDeleted }) => {
+const ThoughtCard = ({
+  thought,
+  onThoughtUpdated,
+  onThoughtDeleted,
+  onThoughtPinned,
+}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [showFollowUpForm, setShowFollowUpForm] = useState(false);
   const [showThread, setShowThread] = useState(false);
@@ -57,6 +62,28 @@ const ThoughtCard = ({ thought, onThoughtUpdated, onThoughtDeleted }) => {
       );
     }
   };
+
+  const handleTogglePin = async () => {
+  setErrorMessage("");
+
+  try {
+    const response = await axiosInstance.patch(`/thoughts/${thought._id}/pin`);
+
+    if (typeof onThoughtPinned !== "function") {
+      throw new Error("onThoughtPinned is not passed to ThoughtCard");
+    }
+
+    onThoughtPinned(response.data.thought);
+  } catch (error) {
+    console.error("Pin error:", error);
+
+    setErrorMessage(
+      error.response?.data?.message ||
+        error.message ||
+        "Failed to update pinned status."
+    );
+  }
+};
 
   const handleCancel = () => {
     setContent(thought.content);
@@ -181,6 +208,10 @@ const ThoughtCard = ({ thought, onThoughtUpdated, onThoughtDeleted }) => {
           <div>
             <button onClick={() => setIsEditing(true)}>Edit</button>
             <button onClick={handleDelete}>Delete</button>
+
+            <button onClick={handleTogglePin}>
+                {thought.isPinned ? "Unpin" : "Pin"}
+            </button>
             <button onClick={() => setShowFollowUpForm((prev) => !prev)}>
               Add Follow-up
             </button>

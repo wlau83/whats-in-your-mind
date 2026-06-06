@@ -599,3 +599,21 @@ article p {
   color: #7a6b66;
   font-size: 0.85rem;
 }
+
+/* Pinned Thoughts */
+
+.pinned-section {
+  background: #fffaf0;
+  border: 1px solid #f0d8a8;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.pinned-section h2 {
+  margin-top: 0;
+}
+
+.pinned-section article {
+  background: white;
+  border-color: #f0d8a8;
+}

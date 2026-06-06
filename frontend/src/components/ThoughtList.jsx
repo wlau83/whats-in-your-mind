@@ -1,13 +1,19 @@
 import ThoughtCard from "./ThoughtCard";
 
-const ThoughtList = ({ thoughts, onThoughtUpdated, onThoughtDeleted }) => {
+const ThoughtList = ({
+  title = "Recent Thoughts",
+  thoughts,
+  onThoughtUpdated,
+  onThoughtDeleted,
+  onThoughtPinned,
+}) => {
   if (thoughts.length === 0) {
     return <p>No thoughts yet. Write your first one.</p>;
   }
 
   return (
     <section>
-      <h2>Recent Thoughts</h2>
+      <h2>{title}</h2>
 
       {thoughts.map((thought) => (
         <ThoughtCard
@@ -15,6 +21,7 @@ const ThoughtList = ({ thoughts, onThoughtUpdated, onThoughtDeleted }) => {
           thought={thought}
           onThoughtUpdated={onThoughtUpdated}
           onThoughtDeleted={onThoughtDeleted}
+          onThoughtPinned={onThoughtPinned}
         />
       ))}
     </section>

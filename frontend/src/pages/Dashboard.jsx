@@ -44,42 +44,69 @@ const Dashboard = () => {
     );
   };
 
+  const handleThoughtPinned = (updatedThought) => {
+    setThoughts((prevThoughts) =>
+      prevThoughts.map((thought) =>
+        thought._id === updatedThought._id ? updatedThought : thought
+      )
+    );
+  };
+
   useEffect(() => {
     fetchThoughts();
   }, []);
 
+  const pinnedThoughts = thoughts.filter((thought) => thought.isPinned);
+  const regularThoughts = thoughts.filter((thought) => !thought.isPinned);
+
   return (
-  <main className="dashboard-page">
-    <section className="dashboard-header">
-      <h1>Dashboard</h1>
-      <p>Hi {user?.username}, what’s in your mind today?</p>
-    </section>
+    <main className="dashboard-page">
+      <section className="dashboard-header">
+        <h1>Dashboard</h1>
+        <p>Hi {user?.username}, what’s in your mind today?</p>
+      </section>
 
-    <section className="dashboard-layout">
-      <div className="dashboard-left">
-        <ThoughtForm onThoughtCreated={handleThoughtCreated} />
-        
-        <SearchThoughts />
-        
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
+      <section className="dashboard-layout">
+        <div className="dashboard-left">
+          <ThoughtForm onThoughtCreated={handleThoughtCreated} />
 
-        {loading ? (
-          <p>Loading thoughts...</p>
-        ) : (
-          <ThoughtList
-            thoughts={thoughts}
-            onThoughtUpdated={handleThoughtUpdated}
-            onThoughtDeleted={handleThoughtDeleted}
-          />
-        )}
-      </div>
+          <SearchThoughts />
 
-      <aside className="dashboard-right">
-        <ThoughtCalendar />
-      </aside>
-    </section>
-  </main>
-);
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+          {loading ? (
+            <p>Loading thoughts...</p>
+          ) : (
+            <>
+              {pinnedThoughts.length > 0 && (
+                <section className="pinned-section">
+                  <ThoughtList
+                    title="Pinned Thoughts"
+                    thoughts={pinnedThoughts}
+                    onThoughtUpdated={handleThoughtUpdated}
+                    onThoughtDeleted={handleThoughtDeleted}
+                    onThoughtPinned={handleThoughtPinned}
+                  />
+                </section>
+              )}
+
+              <ThoughtList
+                title="Recent Thoughts"
+                thoughts={regularThoughts}
+                onThoughtUpdated={handleThoughtUpdated}
+                onThoughtDeleted={handleThoughtDeleted}
+                onThoughtPinned={handleThoughtPinned}
+              />
+            </>
+          )}
+        </div>
+
+        <aside className="dashboard-right">
+          <ThoughtCalendar />
+        </aside>
+      </section>
+    </main>
+  );
 };
 
 export default Dashboard;

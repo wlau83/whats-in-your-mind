@@ -10,6 +10,7 @@ import {
   getThoughtCalendarDates,
   getThoughtsByDate,
   searchThoughts,
+  togglePinThought
 } from "../controllers/thoughtController.js";
 import { authenticateUser } from "../middleware/authenticateUser.js";
 import { validateThoughtInput } from "../middleware/validateThoughtInput.js";
@@ -32,6 +33,8 @@ router.get("/search", searchThoughts);
 router.get("/:id", checkThoughtOwnership, getThoughtById);
 
 router.put("/:id", checkThoughtOwnership, validateThoughtInput, updateThought);
+
+router.patch("/:id/pin", checkThoughtOwnership, togglePinThought);
 
 router.delete("/:id", checkThoughtOwnership, deleteThought);
 

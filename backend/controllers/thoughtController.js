@@ -435,3 +435,44 @@ export const searchThoughts = async (req, res) => {
     });
   }
 };
+
+export const togglePinThought = async (req, res) => {
+  try {
+    const db = getDB();
+    const thoughtsCollection = db.collection("thoughts");
+
+    const currentThought = req.thought;
+
+    const updatedPinnedStatus = !currentThought.isPinned;
+
+    await thoughtsCollection.updateOne(
+      {
+        _id: new ObjectId(req.params.id),
+        userId: new ObjectId(req.user._id),
+      },
+      {
+        $set: {
+          isPinned: updatedPinnedStatus,
+          updatedAt: new Date(),
+        },
+      }
+    );
+
+    const updatedThought = await thoughtsCollection.findOne({
+      _id: new ObjectId(req.params.id),
+      userId: new ObjectId(req.user._id),
+    });
+
+    return res.status(200).json({
+      message: updatedPinnedStatus
+        ? "Thought pinned successfully"
+        : "Thought unpinned successfully",
+      thought: updatedThought,
+    });
+  } catch (error) {
+    console.error("Toggle pin thought error:", error);
+    return res.status(500).json({
+      message: "Server error while updating pinned status",
+    });
+  }
+};
