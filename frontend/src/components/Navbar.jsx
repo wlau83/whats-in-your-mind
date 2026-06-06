@@ -16,7 +16,7 @@ const Navbar = () => {
 
   return (
     <nav>
-      <h2>What's in Your Mind</h2>
+      <h2>What's on Your Mind</h2>
 
       <div>
         {user ? (

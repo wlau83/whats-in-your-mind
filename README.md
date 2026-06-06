@@ -1,6 +1,6 @@
-# What's in Your Mind
+# What's On Your Mind
 
-What's in Your Mind is a full-stack private thought journal web application that allows users to securely capture, organize, search, and revisit their thoughts over time.
+What's On Your Mind is a full-stack private thought journal web application that allows users to securely capture, organize, search, and revisit their thoughts over time.
 
 Unlike a traditional notes app, this project focuses on thought continuity. Users can create follow-up thoughts linked to previous entries, helping them track how their ideas, reflections, and opinions evolve over time.
 

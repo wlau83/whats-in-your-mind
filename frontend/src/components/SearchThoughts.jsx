@@ -6,6 +6,8 @@ const SearchThoughts = () => {
   const [results, setResults] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [openThreadId, setOpenThreadId] = useState(null);
+  const [threadData, setThreadData] = useState(null);
 
   const handleSearch = async (event) => {
     event.preventDefault();
@@ -41,6 +43,33 @@ const SearchThoughts = () => {
     setHasSearched(false);
     setErrorMessage("");
   };
+
+  const handleViewThread = async (thought) => {
+  setErrorMessage("");
+
+  try {
+    const targetThoughtId = thought.parentThoughtId
+      ? thought.parentThoughtId
+      : thought._id;
+
+    if (openThreadId === targetThoughtId) {
+      setOpenThreadId(null);
+      setThreadData(null);
+      return;
+    }
+
+    const response = await axiosInstance.get(
+      `/thoughts/${targetThoughtId}/thread`
+    );
+
+    setOpenThreadId(targetThoughtId);
+    setThreadData(response.data);
+  } catch (error) {
+    setErrorMessage(
+      error.response?.data?.message || "Failed to load thought thread."
+    );
+  }
+};
 
   return (
     <section className="search-section">
@@ -107,6 +136,43 @@ const SearchThoughts = () => {
                   <span>Tags: {thought.tags.join(", ")}</span>
                 )}
               </div>
+              <button
+                type="button"
+                className="secondary-button search-thread-button"
+                onClick={() => handleViewThread(thought)}
+                >
+                {openThreadId === (thought.parentThoughtId || thought._id)
+                    ? "Hide Thread"
+                    : "View Thread"}
+              </button>
+
+              {openThreadId === (thought.parentThoughtId || thought._id) && threadData && (
+                <div className="search-thread-preview">
+                    <div className="search-thread-original">
+                    <span className="thought-type-badge original">Original</span>
+                    <p>{threadData.originalThought.content}</p>
+                    <small>
+                        {new Date(threadData.originalThought.createdAt).toLocaleString()}
+                    </small>
+                    </div>
+
+                    <div className="search-thread-followups">
+                    <strong>Follow-ups</strong>
+
+                    {threadData.followUps.length === 0 ? (
+                        <p>No follow-ups yet.</p>
+                    ) : (
+                        threadData.followUps.map((followUp) => (
+                        <div key={followUp._id} className="search-thread-followup-item">
+                            <span className="thought-type-badge follow-up">Follow-up</span>
+                            <p>{followUp.content}</p>
+                            <small>{new Date(followUp.createdAt).toLocaleString()}</small>
+                        </div>
+                        ))
+                    )}
+                    </div>
+                </div>
+                )}
             </article>
           ))}
         </div>

@@ -691,3 +691,139 @@ article p {
   background: #fffaf0;
   border-color: #f0d8a8;
 }
+
+/* Search Thread Preview */
+
+.search-thread-button {
+  margin-top: 12px;
+}
+
+.search-thread-preview {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 14px;
+  background: #fbf8ff;
+  border: 1px solid #e2d7ff;
+}
+
+.search-thread-original {
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e2d7ff;
+}
+
+.search-thread-original p,
+.search-thread-followup-item p {
+  line-height: 1.5;
+}
+
+.search-thread-followups {
+  margin-top: 12px;
+}
+
+.search-thread-followup-item {
+  margin-top: 12px;
+  padding-left: 12px;
+  border-left: 2px solid #d8c7ff;
+}
+
+/* Thought Thread Panel */
+
+.thought-thread-panel {
+  margin-top: 18px;
+  padding: 16px;
+  border-radius: 14px;
+  background: #fbf8ff;
+  border: 1px solid #e2d7ff;
+}
+
+.thought-thread-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.thought-thread-header h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.thought-thread-header span {
+  color: #7a6b66;
+  font-size: 0.85rem;
+}
+
+.thread-original {
+  padding-bottom: 14px;
+  border-bottom: 1px solid #e2d7ff;
+}
+
+.thread-content {
+  margin: 10px 0;
+  line-height: 1.55;
+}
+
+.thread-followups {
+  margin-top: 14px;
+}
+
+.thread-followup-item {
+  padding: 12px 0 12px 14px;
+  border-left: 2px solid #d8c7ff;
+}
+
+.thread-followup-item + .thread-followup-item {
+  border-top: 1px dashed #eadfd9;
+}
+
+.thread-followup-top {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+}
+
+.thread-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: #7a6b66;
+  font-size: 0.5rem;
+}
+
+.thread-empty-text {
+  color: #7a6b66;
+}
+
+.pinned-section .thought-thread-panel {
+  background: #fffdf8;
+  border-color: #f0d8a8;
+}
+
+.pinned-section .thread-original {
+  border-bottom-color: #f0d8a8;
+}
+
+.pinned-section .thread-followup-item {
+  border-left-color: #f0d8a8;
+}
+
+.pinned-section .thread-followup-item + .thread-followup-item {
+  border-top-color: #f0d8a8;
+}
+
+.pinned-section article {
+  position: relative;
+  padding-left: 18px;
+}
+
+.pinned-section article::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 14px;
+  bottom: 14px;
+  width: 4px;
+  border-radius: 999px;
+  background: #f0c96a;
+}

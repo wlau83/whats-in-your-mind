@@ -1,7 +1,7 @@
 {
   "name": "whats-in-your-mind-backend",
   "version": "1.0.0",
-  "description": "Backend for What's in Your Mind",
+  "description": "Backend for What's on Your Mind",
   "main": "server.js",
   "type": "module",
   "scripts": {

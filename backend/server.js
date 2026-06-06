@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.get("/", (req, res) => {
-  res.json({ message: "What's in Your Mind API is running" });
+  res.json({ message: "What's on Your Mind API is running" });
 });
 
 app.use("/api/auth", authRoutes);

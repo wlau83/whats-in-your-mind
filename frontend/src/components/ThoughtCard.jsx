@@ -277,43 +277,39 @@ const ThoughtCard = ({
       )}
 
       {showThread && thread && (
-        <section>
-          <h4>Thought Thread</h4>
+    <section className="thought-thread-panel">
+        <div className="thought-thread-header">
+        <h4>Follow-up Thread</h4>
+        <span>{thread.followUps.length} follow-up(s)</span>
+        </div>
 
-          <div>
-            <strong>Original Thought</strong>
-            <p>{thread.originalThought.content}</p>
-            <small>
-              {new Date(thread.originalThought.createdAt).toLocaleString()}
-            </small>
-          </div>
-
-          <div>
-            <strong>Follow-ups</strong>
-
-            {thread.followUps.length === 0 ? (
-              <p>No follow-ups yet.</p>
-            ) : (
-              thread.followUps.map((followUp) => (
-                <div key={followUp._id}>
-                  <p>{followUp.content}</p>
-                  <p>
-                    <strong>Mood:</strong> {followUp.mood}
-                  </p>
-                  {followUp.tags?.length > 0 && (
-                    <p>
-                      <strong>Tags:</strong> {followUp.tags.join(", ")}
-                    </p>
-                  )}
-                  <small>
+        <div className="thread-followups">
+        {thread.followUps.length === 0 ? (
+            <p className="thread-empty-text">No follow-ups yet.</p>
+        ) : (
+            thread.followUps.map((followUp) => (
+            <div key={followUp._id} className="thread-followup-item">
+                <div className="thread-followup-top">
+                <small>
                     {new Date(followUp.createdAt).toLocaleString()}
-                  </small>
+                </small>
                 </div>
-              ))
-            )}
-          </div>
-        </section>
-      )}
+
+                <p className="thread-content">{followUp.content}</p>
+
+                <div className="thread-meta">
+                <small>Mood: {followUp.mood}</small>
+
+                {followUp.tags?.length > 0 && (
+                    <small>Tags: {followUp.tags.join(", ")}</small>
+                )}
+                </div>
+            </div>
+            ))
+        )}
+        </div>
+    </section>
+    )}
     </article>
   );
 };

@@ -63,7 +63,7 @@ const Dashboard = () => {
     <main className="dashboard-page">
       <section className="dashboard-header">
         <h1>Dashboard</h1>
-        <p>Hi {user?.username}, what’s in your mind today?</p>
+        <p>Hi {user?.username}, what’s on your mind today?</p>
       </section>
 
       <section className="dashboard-layout">
