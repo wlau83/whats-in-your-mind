@@ -187,7 +187,7 @@ const ThoughtCard = ({
         </>
       ) : (
         <>
-          <p>{thought.content}</p>
+        <p>{thought.content}</p>
 
           <p>
             <strong>Mood:</strong> {thought.mood}
@@ -205,18 +205,28 @@ const ThoughtCard = ({
           <p>
             <strong>Follow-ups:</strong> {thought.followUpCount || 0}
           </p>
-          <div>
-            <button onClick={() => setIsEditing(true)}>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
+          <div className="thought-actions">
+            <button className="secondary-button" onClick={() => setIsEditing(true)}>
+                Edit
+            </button>
 
-            <button onClick={handleTogglePin}>
+            <button className="danger-button" onClick={handleDelete}>
+                Delete
+            </button>
+
+            <button className="pin-button" onClick={handleTogglePin}>
                 {thought.isPinned ? "Unpin" : "Pin"}
             </button>
-            <button onClick={() => setShowFollowUpForm((prev) => !prev)}>
-              Add Follow-up
+
+            <button
+                className="secondary-button"
+                onClick={() => setShowFollowUpForm((prev) => !prev)}
+            >
+                Add Follow-up
             </button>
-            <button onClick={handleToggleThread}>
-              {showThread ? "Hide Thread" : "View Thread"}
+
+            <button className="secondary-button" onClick={handleToggleThread}>
+                {showThread ? "Hide Thread" : "View Thread"}
             </button>
           </div>
         </>

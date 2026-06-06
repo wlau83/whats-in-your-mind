@@ -605,8 +605,82 @@ article p {
 .pinned-section {
   background: #fffaf0;
   border: 1px solid #f0d8a8;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(122, 87, 0, 0.06);
+}
+
+.pinned-section > section {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.pinned-section h2 {
+  margin: 0 0 16px;
+  color: #483930;
+}
+
+.pinned-section article {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #f0d8a8;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 14px 0;
+  margin-bottom: 0;
+}
+
+.pinned-section article:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.pinned-section .thought-actions {
+  margin-top: 12px;
+}
+
+/* Thought Card Polish */
+
+.thought-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.thought-actions button {
+  margin-left: 0;
+}
+
+.secondary-button {
+  background: #efe8ff;
+  color: #5b3fd6;
+}
+
+.pin-button {
+  background: #fff2c2;
+  color: #7a5700;
+}
+
+.danger-button {
+  background: #ffe5e5;
+  color: #b00020;
+}
+
+.pinned-section {
+  background: #fffaf0;
+  border: 1px solid #f0d8a8;
   border-radius: 16px;
   padding: 20px;
+}
+
+.pinned-section > section {
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
 }
 
 .pinned-section h2 {
@@ -614,6 +688,6 @@ article p {
 }
 
 .pinned-section article {
-  background: white;
+  background: #fffaf0;
   border-color: #f0d8a8;
 }
