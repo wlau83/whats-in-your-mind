@@ -48,6 +48,13 @@ Unlike a traditional notes app, this project focuses on thought continuity. User
 - Responsive layout for smaller screens
 - Clean card-based interface
 
+### Auth Page UI/UX
+- Watercolor cloud-inspired login and registration pages
+- Click-to-open cloud animation on the login page
+- Soft journal-style form design for a calm and private user experience
+- Consistent visual styling between login and register pages
+- Minimal navbar layout for easy access to login and registration
+
 ## Tech Stack
 
 ### Frontend
@@ -97,38 +104,66 @@ whats-in-your-mind
 │   │   ├── authRoutes.js
 │   │   └── thoughtRoutes.js
 │   │
-│   ├── server.js
-│   └── package.json
+│   ├── .env
+│   ├── package-lock.json
+│   ├── package.json
+│   └── server.js
 │
-└── frontend
-    ├── src
-    │   ├── api
-    │   │   └── axiosInstance.js
-    │   │
-    │   ├── components
-    │   │   ├── Navbar.jsx
-    │   │   ├── ProtectedRoute.jsx
-    │   │   ├── SearchThoughts.jsx
-    │   │   ├── ThoughtCalendar.jsx
-    │   │   ├── ThoughtCard.jsx
-    │   │   ├── ThoughtForm.jsx
-    │   │   └── ThoughtList.jsx
-    │   │
-    │   ├── context
-    │   │   └── AuthContext.jsx
-    │   │
-    │   ├── pages
-    │   │   ├── Dashboard.jsx
-    │   │   ├── Login.jsx
-    │   │   └── Register.jsx
-    │   │
-    │   ├── App.jsx
-    │   ├── main.jsx
-    │   └── index.css
-	
+├── frontend
+│   ├── public
+│   │
+│   ├── src
+│   │   ├── api
+│   │   │   └── axiosInstance.js
+│   │   │
+│   │   ├── assets
+│   │   │   ├── cloud_center.png
+│   │   │   ├── cloud_left.png
+│   │   │   ├── cloud_right.png
+│   │   │   ├── hero.png
+│   │   │   ├── react.svg
+│   │   │   └── vite.svg
+│   │   │
+│   │   ├── components
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── ProtectedRoute.jsx
+│   │   │   ├── SearchThoughts.jsx
+│   │   │   ├── ThoughtCalendar.jsx
+│   │   │   ├── ThoughtCard.jsx
+│   │   │   ├── ThoughtForm.jsx
+│   │   │   └── ThoughtList.jsx
+│   │   │
+│   │   ├── context
+│   │   │   └── AuthContext.jsx
+│   │   │
+│   │   ├── pages
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── Login.jsx
+│   │   │   └── Register.jsx
+│   │   │
+│   │   ├── styles
+│   │   │   └── Auth.css
+│   │   │
+│   │   ├── App.css
+│   │   ├── App.jsx
+│   │   ├── index.css
+│   │   └── main.jsx
+│   │
+│   ├── .gitignore
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── README.md
+│   └── vite.config.js
+│
+├── .gitignore
+└── README.md
+```
+
 ## Getting Started
 
-###Prerequisites
+### Prerequisites
 
 Make sure you have the following installed:
 
@@ -139,3 +174,116 @@ Make sure you have the following installed:
 ### Backend Setup
 
 Navigate to the backend folder:
+```bash
+cd backend
+```
+
+Install dependencies:
+```bash
+npm install
+```
+
+Create a `.env` file inside the `backend` folder:
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+CLIENT_URL=http://localhost:5173
+NODE_ENV=development
+```
+
+
+Start the backend server:
+```bash
+npm run dev
+```
+
+The backend will run on:
+```text
+http://localhost:5000
+```
+
+### Frontend Setup
+
+Navigate to the frontend folder:
+```bash
+cd frontend
+```
+
+Install dependencies:
+```bash
+npm install
+```
+
+Start the frontend development server:
+```bash
+npm run dev
+```
+
+The frontend will run on:
+```text
+http://localhost:5173
+```
+
+### Auth Routes
+
+| Method | Endpoint             | Description                    |
+| ------ | -------------------- | ------------------------------ |
+| POST   | `/api/auth/register` | Register a new user            |
+| POST   | `/api/auth/login`    | Login user                     |
+| POST   | `/api/auth/logout`   | Logout user                    |
+| GET    | `/api/auth/me`       | Get current authenticated user |
+
+### Thought Routes
+| Method | Endpoint                         | Description                              |
+| ------ | -------------------------------- | ---------------------------------------- |
+| GET    | `/api/thoughts`                  | Get current user's original thoughts     |
+| POST   | `/api/thoughts`                  | Create a new thought                     |
+| GET    | `/api/thoughts/:id`              | Get a single thought                     |
+| PUT    | `/api/thoughts/:id`              | Update a thought                         |
+| DELETE | `/api/thoughts/:id`              | Delete a thought and its follow-ups      |
+| PATCH  | `/api/thoughts/:id/pin`          | Pin or unpin a thought                   |
+| POST   | `/api/thoughts/:id/follow-ups`   | Add a follow-up thought                  |
+| GET    | `/api/thoughts/:id/thread`       | Get original thought with its follow-ups |
+| GET    | `/api/thoughts/calendar/dates`   | Get dates that contain thought records   |
+| GET    | `/api/thoughts/date/:date`       | Get thoughts grouped by date             |
+| GET    | `/api/thoughts/search?q=keyword` | Search thoughts                          |
+
+## Security Considerations
+This project handles private personal thoughts, so security and privacy are important parts of the design.
+
+Implemented security measures include:
+- Password hashing with bcryptjs
+- JWT stored in HttpOnly cookies
+- Protected backend routes
+- User ownership checks for thought records
+- Input validation for thought content, mood, and tags
+- Login rate limiting
+
+## Future Improvements
+Planned improvements include:
+
+- Dark mode
+- Better mobile UI polish
+- Search result navigation to related threads
+- More advanced calendar filtering
+- Mood statistics
+- Tag filtering
+- Deployment to Vercel and Render
+- Unit and integration testing
+
+## Purpose
+This project was built as a portfolio full-stack web application to demonstrate:
+
+- React frontend development
+- Node.js and Express backend development
+- MongoDB data modeling
+- Authentication and protected routes
+- CRUD operations
+- Parent-child data relationships
+- Calendar-based data visualization
+- Search functionality
+- Responsive UI design
+
+## Author 
+Wan Yee LAU
