@@ -56,14 +56,14 @@ const Register = () => {
       </div>
       <section className="auth-content show-auth">
       <h1>Create Account</h1>
-      <p className="auth-subtitle">Start your private thought journal.</p>
+      <h2 className="auth-subtitle">Start your private thought journal.</h2>
 
-      {errorMessage && <p>{errorMessage}</p>}
-      {successMessage && <p>{successMessage}</p>}
+      {errorMessage && <p className="auth-error">{errorMessage}</p>}
+      {successMessage && <p className="auth-success">{successMessage}</p>}
 
       <form className="auth-card register-card" onSubmit={handleSubmit}>
         <div className="auth-field">
-          <label>Username</label>
+          <label>Username:</label>
           <input
             type="text"
             name="username"
@@ -74,7 +74,7 @@ const Register = () => {
         </div>
 
         <div className="auth-field">
-          <label>Email</label>
+          <label>Email:</label>
           <input
             type="email"
             name="email"
@@ -85,7 +85,7 @@ const Register = () => {
         </div>
 
         <div className="auth-field">
-          <label>Password</label>
+          <label>Password:</label>
           <input
             type="password"
             name="password"

@@ -68,13 +68,13 @@ const Login = () => {
 
       <section className={`auth-content ${cloudOpened ? "show-auth" : ""}`}>
       <h1>Welcome back.</h1>
-      <h2>Capture what’s on your mind.</h2>
+      <h2 className="auth-subtitle">Capture what’s on your mind.</h2>
 
       {errorMessage && <p>{errorMessage}</p>}
 
       <form className="auth-card" onSubmit={handleSubmit}>
         <div className="auth-field">
-          <label>Email</label>
+          <label>Email:</label>
           <input
             type="email"
             name="email"
@@ -85,7 +85,7 @@ const Login = () => {
         </div>
 
         <div className="auth-field">
-          <label>Password</label>
+          <label>Password:</label>
           <input
             type="password"
             name="password"

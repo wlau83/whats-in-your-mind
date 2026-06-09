@@ -32,23 +32,23 @@
 }
 
 /* left cloud */
-.cloud-left {
-  width: 58vw;
-  left: 10vw;
-  top: 30vh;
+.cloud_left {
+  width: 90vw;
+  left: 0vw;
+  top: 0vh;
 }
 
 /* center cloud */
-.cloud-center {
-  width: 64vw;
-  left: 26vw;
-  top: 13vh;
+.cloud_center {
+  width: 100vw;
+  left: 20vw;
+  top: 10vh;
 }
 
 /* right cloud */
-.cloud-right {
-  width: 58vw;
-  right: 4vw;
+.cloud_right {
+  width: 80vw;
+  right: 5vw;
   top: 32vh;
 }
 
@@ -123,6 +123,7 @@
   align-items: center;
   color: #6f5b57;
   text-align: center;
+  margin-bottom: 100px;
   transition:
     opacity 0.7s ease,
     transform 0.7s ease;
@@ -163,20 +164,22 @@
 }
 
 .auth-content h1 {
-  font-size: 3.2rem;
-  margin-bottom: 0.5rem;
+  font-size: 3.8rem;
+  margin-bottom: 0.6rem;
 }
 
 .auth-subtitle {
-  font-size: 2.1rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
+  font-size: 1.65rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 1.8rem;
+  color: #6f5b57;
 }
 
 .auth-card {
-  width: 520px;
+  width: 620px;
   max-width: 90vw;
-  padding: 2.2rem 2.8rem;
+  padding: 2.4rem 3rem;
   border: 9px solid #d0b4aa;
   border-radius: 32px;
   background: rgba(255, 255, 255, 0.72);
@@ -186,7 +189,7 @@
 
 .auth-field {
   display: grid;
-  grid-template-columns: 140px 1fr;
+  grid-template-columns: 160px 1fr;
   align-items: center;
   gap: 1rem;
   margin-bottom: 1.5rem;
@@ -194,7 +197,7 @@
 }
 
 .auth-field label {
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   font-weight: bold;
 }
 
@@ -252,7 +255,13 @@
 
 .auth-error {
   color: #9f4f4f;
-  font-weight: bold;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.auth-success {
+  color: #4f7f5f;
+  font-weight: 700;
   margin-bottom: 1rem;
 }
 
@@ -293,8 +302,7 @@
 }
 
 .register-card {
-  width: 640px;
-  max-width: 90vw;
+  width: 620px;
 }
 
 .login-cloud-background {
