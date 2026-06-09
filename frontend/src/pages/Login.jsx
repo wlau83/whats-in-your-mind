@@ -1,10 +1,18 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import "../styles/Auth.css";
+
+import cloudLeft from "../assets/cloud_left.png";
+import cloudCenter from "../assets/cloud_center.png";
+import cloudRight from "../assets/cloud_right.png";
 
 const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
+
+  const [cloudOpened, setCloudOpened] = useState(false);
+
 
   const [formData, setFormData] = useState({
     email: "",
@@ -36,13 +44,36 @@ const Login = () => {
 
   return (
     <main className="auth-page">
-      <h1>Login</h1>
-      <p>Welcome back. Capture what’s in your mind.</p>
+    <div className="login-cloud-background">
+      <img src={cloudLeft} alt="" className="login-bg-cloud cloud-left-bg" />
+      <img src={cloudCenter} alt="" className="login-bg-cloud cloud-center-bg" />
+      <img src={cloudRight} alt="" className="login-bg-cloud cloud-right-bg" />
+    </div>
+        
+      <section
+        className={`cloud-layer ${cloudOpened ? "cloud-opened" : ""}`}
+        onClick={() => setCloudOpened(true)}
+      >
+        <img src={cloudLeft} alt="Pink Cloud" className="cloud-piece cloud_left" />
+        <img src={cloudCenter} alt="Pink Cloud" className="cloud-piece cloud_center" />
+        <img src={cloudRight} alt="Pink Cloud" className="cloud-piece cloud_right" />
+
+        {!cloudOpened && (
+          <div className="cloud-start-text">
+            <h1>Capture what’s on your mind.</h1>
+            <p>Click the cloud to begin</p>
+          </div>
+        )}
+      </section>
+
+      <section className={`auth-content ${cloudOpened ? "show-auth" : ""}`}>
+      <h1>Welcome back.</h1>
+      <h2>Capture what’s on your mind.</h2>
 
       {errorMessage && <p>{errorMessage}</p>}
 
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form className="auth-card" onSubmit={handleSubmit}>
+        <div className="auth-field">
           <label>Email</label>
           <input
             type="email"
@@ -53,7 +84,7 @@ const Login = () => {
           />
         </div>
 
-        <div>
+        <div className="auth-field">
           <label>Password</label>
           <input
             type="password"
@@ -64,12 +95,14 @@ const Login = () => {
           />
         </div>
 
-        <button type="submit">Login</button>
-      </form>
+        <button type="submit" className="auth-button">Login</button>
+      
 
-      <p>
+      <p className="auth-link-text">
         Don’t have an account? <Link to="/register">Register here</Link>
       </p>
+      </form>
+      </section>
     </main>
   );
 };

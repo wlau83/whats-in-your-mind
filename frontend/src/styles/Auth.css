@@ -1,0 +1,312 @@
+.auth-page {
+  width: 100vw;
+  max-width: none;
+  min-height: calc(100vh - 72px);
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  background: #fbf8f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #6f5b57;
+}
+
+/* cloud opening layer */
+.cloud-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  cursor: pointer;
+  overflow: hidden;
+  background: transparent;
+}
+
+.cloud-piece {
+  position: absolute;
+  opacity: 0.82;
+  pointer-events: none;
+  will-change: transform, opacity, filter;
+}
+
+/* left cloud */
+.cloud-left {
+  width: 58vw;
+  left: 10vw;
+  top: 30vh;
+}
+
+/* center cloud */
+.cloud-center {
+  width: 64vw;
+  left: 26vw;
+  top: 13vh;
+}
+
+/* right cloud */
+.cloud-right {
+  width: 58vw;
+  right: 4vw;
+  top: 32vh;
+}
+
+/* click後：left落左下，center落中下，right落右下 */
+.cloud-layer.cloud-opened .cloud_left {
+  animation: cloudLeftOpen 1.4s ease forwards;
+}
+
+.cloud-layer.cloud-opened .cloud_center {
+  animation: cloudCenterOpen 1.4s ease forwards;
+}
+
+.cloud-layer.cloud-opened .cloud_right {
+  animation: cloudRightOpen 1.4s ease forwards;
+}
+
+@keyframes cloudLeftOpen {
+  from {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 0.82;
+    filter: blur(0);
+  }
+
+  to {
+    transform: translate(-35vw, 48vh) rotate(8deg) scale(1.08);
+    opacity: 0;
+    filter: blur(5px);
+  }
+}
+
+@keyframes cloudCenterOpen {
+  from {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.82;
+    filter: blur(0);
+  }
+
+  to {
+    transform: translateY(60vh) scale(1.12);
+    opacity: 0;
+    filter: blur(6px);
+  }
+}
+
+@keyframes cloudRightOpen {
+  from {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 0.82;
+    filter: blur(0);
+  }
+
+  to {
+    transform: translate(35vw, 48vh) rotate(-8deg) scale(1.08);
+    opacity: 0;
+    filter: blur(5px);
+  }
+}
+
+.cloud-layer.cloud-opened {
+  pointer-events: none;
+  /*z-index: 1;*/
+}
+
+/* intro text before clicking */
+.cloud-start-text {
+  position: absolute;
+  z-index: 12;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #6f5b57;
+  text-align: center;
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.cloud-start-text h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.cloud-start-text p {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.cloud-layer.cloud-opened .cloud-start-text {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* login content */
+.auth-content {
+  position: relative;
+  z-index: 20;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 1s ease 0.6s,
+    transform 1s ease 0.6s;
+  pointer-events: none;
+}
+
+.auth-content.show-auth {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.auth-content h1 {
+  font-size: 3.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.auth-subtitle {
+  font-size: 2.1rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.auth-card {
+  width: 520px;
+  max-width: 90vw;
+  padding: 2.2rem 2.8rem;
+  border: 9px solid #d0b4aa;
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(3px);
+  box-shadow: 0 12px 30px rgba(120, 90, 80, 0.1);
+}
+
+.auth-field {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.auth-field label {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.auth-field input {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1.5px solid #cdb9ad;
+  border-radius: 10px;
+  background: rgba(255, 252, 242, 0.9);
+  color: #6f5b57;
+  font-size: 1rem;
+  outline: none;
+}
+
+.auth-field input:focus {
+  border-color: #a98f84;
+  box-shadow: 0 0 0 3px rgba(208, 180, 170, 0.25);
+}
+
+.auth-button {
+  margin-top: 0.5rem;
+  padding: 0.65rem 1.8rem;
+  border: none;
+  border-radius: 10px;
+  background: #b9a79b;
+  color: #fffaf7;
+  font-size: 1.25rem;
+  font-weight: bold;
+  font-family: Georgia, "Times New Roman", serif;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.auth-button:hover {
+  background: #9f8c82;
+  transform: translateY(-1px);
+}
+
+.auth-link-text {
+  margin-top: 1.8rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.auth-link-text a {
+  color: #6f5b57;
+  text-decoration: underline;
+}
+
+.auth-link-text a:hover {
+  color: #9f6f75;
+}
+
+.auth-error {
+  color: #9f4f4f;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.register-page {
+  min-height: calc(100vh - 73px);
+}
+
+.register-cloud-background {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.register-cloud {
+  position: absolute;
+  opacity: 0.55;
+  filter: blur(1px);
+}
+
+.cloud-left-bg {
+  width: 58vw;
+  left: 8vw;
+  top: 32vh;
+}
+
+.cloud-center-bg {
+  width: 64vw;
+  left: 25vw;
+  top: 14vh;
+}
+
+.cloud-right-bg {
+  width: 58vw;
+  right: 5vw;
+  top: 34vh;
+}
+
+.register-card {
+  width: 640px;
+  max-width: 90vw;
+}
+
+.login-cloud-background {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.login-bg-cloud {
+  position: absolute;
+  opacity: 0.55;
+  filter: blur(1px);
+}

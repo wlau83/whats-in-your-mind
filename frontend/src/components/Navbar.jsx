@@ -16,7 +16,6 @@ const Navbar = () => {
 
   return (
     <nav>
-      <h2>What's on Your Mind</h2>
 
       <div>
         {user ? (
@@ -27,8 +26,10 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            
+            <Link className="nav-auth-link" to="/login">Login</Link>
+            <Link className="nav-auth-link" to="/register">Register</Link>
+            
           </>
         )}
       </div>

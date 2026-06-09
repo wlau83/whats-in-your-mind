@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import "../styles/Auth.css";
+
+import cloudLeft from "../assets/cloud_left.png";
+import cloudCenter from "../assets/cloud_center.png";
+import cloudRight from "../assets/cloud_right.png";
 
 const Register = () => {
   const { register } = useAuth();
@@ -43,15 +48,21 @@ const Register = () => {
   };
 
   return (
-    <main className="auth-page">
+    <main className="auth-page register-page">
+    <div className="register-cloud-background">
+        <img src={cloudLeft} alt="" className="register-cloud cloud-left-bg" />
+        <img src={cloudCenter} alt="" className="register-cloud cloud-center-bg" />
+        <img src={cloudRight} alt="" className="register-cloud cloud-right-bg" />
+      </div>
+      <section className="auth-content show-auth">
       <h1>Create Account</h1>
-      <p>Start your private thought journal.</p>
+      <p className="auth-subtitle">Start your private thought journal.</p>
 
       {errorMessage && <p>{errorMessage}</p>}
       {successMessage && <p>{successMessage}</p>}
 
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form className="auth-card register-card" onSubmit={handleSubmit}>
+        <div className="auth-field">
           <label>Username</label>
           <input
             type="text"
@@ -62,7 +73,7 @@ const Register = () => {
           />
         </div>
 
-        <div>
+        <div className="auth-field">
           <label>Email</label>
           <input
             type="email"
@@ -73,7 +84,7 @@ const Register = () => {
           />
         </div>
 
-        <div>
+        <div className="auth-field">
           <label>Password</label>
           <input
             type="password"
@@ -85,12 +96,14 @@ const Register = () => {
           />
         </div>
 
-        <button type="submit">Register</button>
-      </form>
+        <button type="submit" className="auth-button">Register</button>
+      
 
-      <p>
+      <p className="auth-link-text">
         Already have an account? <Link to="/login">Login here</Link>
       </p>
+      </form>
+      </section>
     </main>
   );
 };
