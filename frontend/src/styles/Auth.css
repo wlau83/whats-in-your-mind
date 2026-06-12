@@ -22,86 +22,71 @@
   cursor: pointer;
   overflow: hidden;
   background: transparent;
+
+  --cloud-top: 47%;
+  --text-top: 50%;
 }
 
+/* cloud group */
+.cloud-cluster {
+  position: absolute;
+  left: 50%;
+  top: var(--cloud-top);
+  width: min(1000px, 96vw);
+  height: min(650px, 70vh);
+  transform: translate(-50%, -50%);
+  z-index: 11;
+}
+
+/* all clouds start from the same center point */
 .cloud-piece {
   position: absolute;
-  opacity: 0.82;
+  left: 50%;
+  top: 50%;
+  opacity: 0.78;
   pointer-events: none;
+  max-width: none;
   will-change: transform, opacity, filter;
 }
 
 /* left cloud */
 .cloud_left {
-  width: 90vw;
-  left: 0vw;
-  top: 0vh;
+  width: clamp(300px, 55vw, 650px);
+  --from: translate(-64%, -58%) rotate(0deg) scale(1);
+  --to: translate(-115%, 25%) rotate(8deg) scale(1.08);
+  transform: var(--from);
 }
 
 /* center cloud */
 .cloud_center {
-  width: 100vw;
-  left: 20vw;
-  top: 10vh;
+  width: clamp(320px, 62vw, 760px);
+  --from: translate(-50%, -56%) scale(1);
+  --to: translate(-50%, 55%) scale(1.12);
+  transform: var(--from);
 }
 
 /* right cloud */
 .cloud_right {
-  width: 80vw;
-  right: 5vw;
-  top: 32vh;
+  width: clamp(260px, 50vw, 600px);
+  --from: translate(-36%, -36%) rotate(0deg) scale(1);
+  --to: translate(10%, 25%) rotate(-8deg) scale(1.08);
+  transform: var(--from);
 }
 
-/* click後：left落左下，center落中下，right落右下 */
-.cloud-layer.cloud-opened .cloud_left {
-  animation: cloudLeftOpen 1.4s ease forwards;
+/* click後：三舊雲一齊散開 */
+.cloud-layer.cloud-opened .cloud-piece {
+  animation: cloudOpen 1.4s ease forwards;
 }
 
-.cloud-layer.cloud-opened .cloud_center {
-  animation: cloudCenterOpen 1.4s ease forwards;
-}
-
-.cloud-layer.cloud-opened .cloud_right {
-  animation: cloudRightOpen 1.4s ease forwards;
-}
-
-@keyframes cloudLeftOpen {
+@keyframes cloudOpen {
   from {
-    transform: translate(0, 0) rotate(0deg) scale(1);
-    opacity: 0.82;
+    transform: var(--from);
+    opacity: 0.78;
     filter: blur(0);
   }
 
   to {
-    transform: translate(-35vw, 48vh) rotate(8deg) scale(1.08);
-    opacity: 0;
-    filter: blur(5px);
-  }
-}
-
-@keyframes cloudCenterOpen {
-  from {
-    transform: translate(0, 0) scale(1);
-    opacity: 0.82;
-    filter: blur(0);
-  }
-
-  to {
-    transform: translateY(60vh) scale(1.12);
-    opacity: 0;
-    filter: blur(6px);
-  }
-}
-
-@keyframes cloudRightOpen {
-  from {
-    transform: translate(0, 0) rotate(0deg) scale(1);
-    opacity: 0.82;
-    filter: blur(0);
-  }
-
-  to {
-    transform: translate(35vw, 48vh) rotate(-8deg) scale(1.08);
+    transform: var(--to);
     opacity: 0;
     filter: blur(5px);
   }
@@ -109,21 +94,23 @@
 
 .cloud-layer.cloud-opened {
   pointer-events: none;
-  /*z-index: 1;*/
 }
 
 /* intro text before clicking */
 .cloud-start-text {
   position: absolute;
   z-index: 12;
-  inset: 0;
+  left: 50%;
+  top: var(--text-top);
+  width: min(92vw, 1000px);
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   color: #6f5b57;
   text-align: center;
-  margin-bottom: 100px;
+  margin-bottom: 0;
   transition:
     opacity 0.7s ease,
     transform 0.7s ease;
@@ -141,10 +128,11 @@
 
 .cloud-layer.cloud-opened .cloud-start-text {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translate(-50%, calc(-50% + 30px));
+  pointer-events: none;
 }
 
-/* login content */
+/* login / register content */
 .auth-content {
   position: relative;
   z-index: 20;
@@ -265,6 +253,7 @@
   margin-bottom: 1rem;
 }
 
+/* register page */
 .register-page {
   min-height: calc(100vh - 73px);
 }
@@ -305,6 +294,7 @@
   width: 620px;
 }
 
+/* login page background */
 .login-cloud-background {
   position: absolute;
   inset: 0;
@@ -317,4 +307,123 @@
   position: absolute;
   opacity: 0.55;
   filter: blur(1px);
+}
+
+/* tablet / smaller screens */
+@media (min-width: 601px) and (max-width: 900px) {
+  .cloud-layer {
+    --cloud-top: 35%;
+    --text-top: 40%;
+  }
+
+  .cloud-cluster {
+    width: 95vw;
+    height: 420px;
+  }
+
+  .cloud-piece {
+    opacity: 0.72;
+  }
+
+  .cloud_left {
+    width: 65vw;
+    --from: translate(-66%, -55%) rotate(0deg) scale(1);
+    --to: translate(-125%, 25%) rotate(8deg) scale(1.08);
+  }
+
+  .cloud_center {
+    width: 70vw;
+    --from: translate(-50%, -55%) scale(1);
+    --to: translate(-50%, 55%) scale(1.12);
+  }
+
+  .cloud_right {
+    width: 58vw;
+    --from: translate(-34%, -34%) rotate(0deg) scale(1);
+    --to: translate(15%, 25%) rotate(-8deg) scale(1.08);
+  }
+
+  .cloud-start-text {
+    width: min(92vw, 620px);
+  }
+
+  .cloud-start-text h1 {
+    font-size: clamp(2.4rem, 6vw, 3rem);
+    line-height: 1.08;
+    max-width: 680px;
+    margin-bottom: 1.4rem;
+  }
+
+  .cloud-start-text p {
+    font-size: 1rem;
+  }
+}
+
+/* mobile */
+@media (max-width: 600px) {
+  .auth-page {
+    min-height: calc(100vh - 56px);
+  }
+
+  .cloud-layer {
+    --cloud-top: 33%;
+    --text-top: 35%;
+  }
+
+  .cloud-cluster {
+    width: 100vw;
+    height: 300px;
+  }
+
+  .cloud_left {
+    width: 70vw;
+  }
+
+  .cloud_center {
+    width: 76vw;
+  }
+
+  .cloud_right {
+    width: 62vw;
+  }
+
+  .cloud-start-text {
+    width: 92vw;
+  }
+
+  .cloud-start-text h1 {
+    font-size: 2rem;
+    line-height: 1.08;
+    max-width: 320px;
+    margin: 0 auto 1.2rem;
+  }
+
+  .cloud-start-text p {
+    font-size: 0.9rem;
+  }
+
+  .auth-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .auth-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .auth-card {
+    width: 92vw;
+    padding: 1.6rem 1.3rem;
+    border-width: 6px;
+    border-radius: 24px;
+  }
+
+  .auth-field {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .auth-field label {
+    font-size: 1.1rem;
+  }
 }

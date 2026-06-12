@@ -53,17 +53,18 @@ const Login = () => {
       <section
         className={`cloud-layer ${cloudOpened ? "cloud-opened" : ""}`}
         onClick={() => setCloudOpened(true)}
-      >
+      ><div className="cloud-cluster">
         <img src={cloudLeft} alt="Pink Cloud" className="cloud-piece cloud_left" />
         <img src={cloudCenter} alt="Pink Cloud" className="cloud-piece cloud_center" />
         <img src={cloudRight} alt="Pink Cloud" className="cloud-piece cloud_right" />
+        </div>
 
-        {!cloudOpened && (
+        
           <div className="cloud-start-text">
             <h1>Capture what’s on your mind.</h1>
             <p>Click the cloud to begin</p>
           </div>
-        )}
+        
       </section>
 
       <section className={`auth-content ${cloudOpened ? "show-auth" : ""}`}>
