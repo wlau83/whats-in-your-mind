@@ -4,7 +4,15 @@ import { getDB } from "../config/db.js";
 
 export const authenticateUser = async (req, res, next) => {
   try {
-    const token = req.cookies.token;
+    const cookieToken = req.cookies?.token;
+
+    const authHeader = req.headers.authorization;
+    const bearerToken =
+      authHeader && authHeader.startsWith("Bearer ")
+        ? authHeader.split(" ")[1]
+        : null;
+
+    const token = bearerToken || cookieToken;
 
     if (!token) {
       return res.status(401).json({

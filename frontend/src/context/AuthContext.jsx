@@ -19,14 +19,16 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async (email, password) => {
-    const response = await axiosInstance.post("/api/auth/login", {
-      email,
-      password,
-    });
+  const response = await axiosInstance.post("/api/auth/login", {
+    email,
+    password,
+  });
 
-    setUser(response.data.user);
-    return response.data;
-  };
+  localStorage.setItem("token", response.data.token);
+  setUser(response.data.user);
+
+  return response.data;
+};
 
   const register = async (username, email, password) => {
     const response = await axiosInstance.post("/api/auth/register", {
@@ -40,6 +42,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     await axiosInstance.post("/api/auth/logout");
+    localStorage.removeItem("token");
     setUser(null);
   };
 
