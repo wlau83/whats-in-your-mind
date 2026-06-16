@@ -15,7 +15,7 @@ const Dashboard = () => {
 
   const fetchThoughts = async () => {
     try {
-      const response = await axiosInstance.get("/thoughts");
+      const response = await axiosInstance.get("/api/thoughts");
       setThoughts(response.data.thoughts);
     } catch (error) {
       setErrorMessage(

@@ -31,7 +31,7 @@ const ThoughtCard = ({
       .filter((tag) => tag.length > 0);
 
     try {
-      const response = await axiosInstance.put(`/thoughts/${thought._id}`, {
+      const response = await axiosInstance.put(`/api/thoughts/${thought._id}`, {
         content,
         mood,
         tags,
@@ -54,7 +54,7 @@ const ThoughtCard = ({
     if (!confirmDelete) return;
 
     try {
-      await axiosInstance.delete(`/thoughts/${thought._id}`);
+      await axiosInstance.delete(`/api/thoughts/${thought._id}`);
       onThoughtDeleted(thought._id);
     } catch (error) {
       setErrorMessage(
@@ -67,7 +67,7 @@ const ThoughtCard = ({
   setErrorMessage("");
 
   try {
-    const response = await axiosInstance.patch(`/thoughts/${thought._id}/pin`);
+    const response = await axiosInstance.patch(`/api/thoughts/${thought._id}/pin`);
 
     if (typeof onThoughtPinned !== "function") {
       throw new Error("onThoughtPinned is not passed to ThoughtCard");
@@ -103,7 +103,7 @@ const ThoughtCard = ({
       .filter((tag) => tag.length > 0);
 
     try {
-      await axiosInstance.post(`/thoughts/${thought._id}/follow-ups`, {
+      await axiosInstance.post(`/api/thoughts/${thought._id}/follow-ups`, {
         content: followUpContent,
         mood: followUpMood,
         tags,
@@ -125,7 +125,7 @@ const ThoughtCard = ({
 
   const fetchThread = async () => {
     try {
-      const response = await axiosInstance.get(`/thoughts/${thought._id}/thread`);
+      const response = await axiosInstance.get(`/api/thoughts/${thought._id}/thread`);
       setThread(response.data);
     } catch (error) {
       setErrorMessage(

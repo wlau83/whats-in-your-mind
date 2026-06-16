@@ -31,7 +31,7 @@ const ThoughtCalendar = () => {
 
   const fetchCalendarDates = async () => {
     try {
-      const response = await axiosInstance.get("/thoughts/calendar/dates");
+      const response = await axiosInstance.get("/api/thoughts/calendar/dates");
       setRecordDates(response.data.dates);
     } catch (error) {
       setErrorMessage(
@@ -42,7 +42,7 @@ const ThoughtCalendar = () => {
 
   const fetchThoughtsByDate = async (date) => {
     try {
-      const response = await axiosInstance.get(`/thoughts/date/${date}`);
+      const response = await axiosInstance.get(`/api/thoughts/date/${date}`);
       setSelectedDateGroups(response.data.groups || []);
       setSelectedDate(date);
     } catch (error) {

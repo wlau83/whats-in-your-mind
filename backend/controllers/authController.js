@@ -10,11 +10,15 @@ const createToken = (userId) => {
   );
 };
 
-const cookieOptions = {
-  httpOnly: true,
-  secure: process.env.NODE_ENV === "production",
-  sameSite: "strict",
-  maxAge: 1000 * 60 * 60, // 1 hour
+const getCookieOptions = () => {
+  const isProduction = process.env.NODE_ENV === "production";
+
+  return {
+    httpOnly: true,
+    secure: isProduction,
+    sameSite: isProduction ? "none" : "lax",
+    maxAge: 1000 * 60 * 60, // 1 hour
+  };
 };
 
 export const register = async (req, res) => {
@@ -37,7 +41,7 @@ export const register = async (req, res) => {
     }
 
     const existingUser = await usersCollection.findOne({
-      email: email.toLowerCase(),
+      email: email.toLowerCase().trim(),
     });
 
     if (existingUser) {
@@ -106,7 +110,7 @@ export const login = async (req, res) => {
 
     const token = createToken(user._id.toString());
 
-    res.cookie("token", token, cookieOptions);
+    res.cookie("token", token, getCookieOptions());
 
     return res.status(200).json({
       message: "Login successful",
@@ -121,15 +125,11 @@ export const login = async (req, res) => {
     return res.status(500).json({
       message: "Server error during login",
     });
-  }const { username, email, password } = req.body || {};
+  }
 };
 
 export const logout = async (req, res) => {
-  res.clearCookie("token", {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
-  });
+  res.clearCookie("token", getCookieOptions());
 
   return res.status(200).json({
     message: "Logout successful",

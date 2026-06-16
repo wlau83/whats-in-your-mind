@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
 
   const checkAuth = async () => {
     try {
-      const response = await axiosInstance.get("/auth/me");
+      const response = await axiosInstance.get("/api/auth/me");
       setUser(response.data.user);
     } catch (error) {
       setUser(null);
@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async (email, password) => {
-    const response = await axiosInstance.post("/auth/login", {
+    const response = await axiosInstance.post("/api/auth/login", {
       email,
       password,
     });
@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const register = async (username, email, password) => {
-    const response = await axiosInstance.post("/auth/register", {
+    const response = await axiosInstance.post("/api/auth/register", {
       username,
       email,
       password,
@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    await axiosInstance.post("/auth/logout");
+    await axiosInstance.post("/api/auth/logout");
     setUser(null);
   };
 

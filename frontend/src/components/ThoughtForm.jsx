@@ -17,7 +17,7 @@ const ThoughtForm = ({ onThoughtCreated }) => {
       .filter((tag) => tag.length > 0);
 
     try {
-      const response = await axiosInstance.post("/thoughts", {
+      const response = await axiosInstance.post("/api/thoughts", {
         content,
         mood,
         tags,
@@ -37,7 +37,7 @@ const ThoughtForm = ({ onThoughtCreated }) => {
 
   return (
     <section>
-      <h2>What’s in your mind?</h2>
+      <h2>What’s on your mind?</h2>
 
       {errorMessage && <p>{errorMessage}</p>}
 

@@ -22,7 +22,7 @@ const SearchThoughts = () => {
     }
 
     try {
-      const response = await axiosInstance.get("/thoughts/search", {
+      const response = await axiosInstance.get("/api/thoughts/search", {
         params: {
           q: query.trim(),
         },
@@ -59,7 +59,7 @@ const SearchThoughts = () => {
     }
 
     const response = await axiosInstance.get(
-      `/thoughts/${targetThoughtId}/thread`
+      `/api/thoughts/${targetThoughtId}/thread`
     );
 
     setOpenThreadId(targetThoughtId);
