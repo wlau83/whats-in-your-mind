@@ -31,6 +31,10 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/thoughts", thoughtRoutes);
 
+app.get("/", (req, res) => {
+  res.send("What’s on your mind API is running");
+});
+
 const PORT = process.env.PORT || 5000;
 
 connectDB().then(() => {
@@ -42,3 +46,5 @@ connectDB().then(() => {
 .catch((error) => {
     console.error("Database connection failed:", error);
   });
+
+  
