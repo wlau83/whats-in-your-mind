@@ -260,6 +260,26 @@ Implemented security measures include:
 - Input validation for thought content, mood, and tags
 - Login rate limiting
 
+## Testing / QA Documentation
+
+Manual QA testing was performed for the main user flows of the application, including authentication, protected routes, thought CRUD operations, pin/unpin functionality, follow-up threads, search, calendar highlighting, logout, and post-deployment smoke testing.
+
+QA documentation is available in the `testing` folder:
+
+- [QA Test Report](./testing/QA_Test_Report_Whats_On_Your_Mind.md)
+- [Bug Report](./testing/Bug_Report_Whats_On_Your_Mind.md)
+
+### QA Summary
+
+- Total Test Cases: 14
+- Passed: 14
+- Failed: 0
+- Bugs Found: 5
+- Bugs Fixed: 5
+- Open Critical Bugs: 0
+
+Testing included functional testing, regression testing, and deployment smoke testing.
+
 ## Future Improvements
 Planned improvements include:
 
