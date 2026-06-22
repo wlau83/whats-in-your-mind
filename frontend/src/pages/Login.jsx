@@ -77,6 +77,7 @@ const Login = () => {
         <div className="auth-field">
           <label>Email:</label>
           <input
+            data-testid="login-email"
             type="email"
             name="email"
             value={formData.email}
@@ -88,6 +89,7 @@ const Login = () => {
         <div className="auth-field">
           <label>Password:</label>
           <input
+            data-testid="login-password"
             type="password"
             name="password"
             value={formData.password}
@@ -96,7 +98,7 @@ const Login = () => {
           />
         </div>
 
-        <button type="submit" className="auth-button">Login</button>
+        <button data-testid="login-submit" type="submit" className="auth-button">Login</button>
       
 
       <p className="auth-link-text">

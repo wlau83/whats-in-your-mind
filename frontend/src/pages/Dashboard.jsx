@@ -60,7 +60,7 @@ const Dashboard = () => {
   const regularThoughts = thoughts.filter((thought) => !thought.isPinned);
 
   return (
-    <main className="dashboard-page">
+    <main className="dashboard-page" data-testid="dashboard-page">
       <section className="dashboard-header">
         <h1>Dashboard</h1>
         <p>Hi {user?.username}, what’s on your mind today?</p>

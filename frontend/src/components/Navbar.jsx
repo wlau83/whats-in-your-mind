@@ -22,7 +22,7 @@ const Navbar = () => {
           <>
             <span>Hi, {user.username}</span>
             <Link to="/dashboard">Dashboard</Link>
-            <button onClick={handleLogout}>Logout</button>
+            <button data-testid="logout-button" onClick={handleLogout}>Logout</button>
           </>
         ) : (
           <>

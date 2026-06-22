@@ -1,0 +1,17 @@
+{
+  "name": "whats-on-your-mind-selenium-tests",
+  "version": "1.0.0",
+  "description": "Selenium smoke tests for What's on your mind project",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/smoke.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "selenium-webdriver": "^4.45.0"
+  }
+}
